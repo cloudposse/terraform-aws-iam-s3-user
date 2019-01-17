@@ -17,3 +17,9 @@ module "s3_user" {
   force_destroy = "${var.force_destroy}"
   path          = "${var.path}"
 }
+
+resource "aws_iam_user_policy" "default" {
+  name   = "${module.s3_user.user_name}"
+  user   = "${module.s3_user.user_name}"
+  policy = "${data.aws_iam_policy_document.default.json}"
+}
