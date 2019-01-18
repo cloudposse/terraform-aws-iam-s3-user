@@ -19,6 +19,7 @@ module "s3_user" {
 }
 
 resource "aws_iam_user_policy" "default" {
+  count  = "${var.enabled == "true" ? 1 : 0}"
   name   = "${module.s3_user.user_name}"
   user   = "${module.s3_user.user_name}"
   policy = "${data.aws_iam_policy_document.default.json}"
