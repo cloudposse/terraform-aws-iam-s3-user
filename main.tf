@@ -1,4 +1,5 @@
 data "aws_iam_policy_document" "default" {
+  count  = "${var.enabled == "true" ? 1 : 0}"
   statement {
     actions   = ["${var.s3_actions}"]
     resources = ["${var.s3_resources}"]
