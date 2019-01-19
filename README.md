@@ -38,7 +38,7 @@ module "s3_user" {
   stage        = "prod"
   name         = "app"
   s3_actions   = ["s3:GetObject"]
-  s3_resources = "arn:aws:s3:::examplebucket/*"
+  s3_resources = ["arn:aws:s3:::examplebucket/*"]
 }
 ```
 
