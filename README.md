@@ -3,7 +3,7 @@
 
 [![Cloud Posse][logo]](https://cpco.io/homepage)
 
-# terraform-aws-iam-s3-user [![Codefresh Build Status](https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-iam-system-user?type=cf-1)](https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d0db46dc6e7232219c081d4) [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-iam-s3-user.svg)](https://github.com/cloudposse/terraform-aws-iam-s3-user/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
+# terraform-aws-iam-s3-user [![Codefresh Build Status](https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-iam-s3-user?type=cf-1)](https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d12481cc6e335d586a1315d) [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-iam-s3-user.svg)](https://github.com/cloudposse/terraform-aws-iam-s3-user/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
 
 
 Terraform module to provision a basic IAM user with permissions to access S3 resources, e.g. to give the user read/write/delete access to the objects in an S3 bucket.
