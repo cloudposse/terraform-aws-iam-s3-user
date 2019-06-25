@@ -18,9 +18,9 @@ github_repo: cloudposse/terraform-aws-iam-s3-user
 
 # Badges to display
 badges:
-  - name: "Build Status"
-    image: "https://travis-ci.org/cloudposse/terraform-aws-iam-s3-user.svg?branch=master"
-    url: "https://travis-ci.org/cloudposse/terraform-aws-iam-s3-user"
+  - name: "Codefresh Build Status"
+    image: "https://g.codefresh.io/api/badges/pipeline/cloudposse/terraform-modules%2Fterraform-aws-iam-s3-user?type=cf-1"
+    url: "https://g.codefresh.io/public/accounts/cloudposse/pipelines/5d12481cc6e335d586a1315d"
   - name: "Latest Release"
     image: "https://img.shields.io/github/release/cloudposse/terraform-aws-iam-s3-user.svg"
     url: "https://github.com/cloudposse/terraform-aws-iam-s3-user/releases/latest"
@@ -59,8 +59,8 @@ usage: |-
   ```hcl
   module "s3_user" {
     source       = "git::https://github.com/cloudposse/terraform-aws-iam-s3-user.git?ref=master"
-    namespace    = "cp"
-    stage        = "prod"
+    namespace    = "eg"
+    stage        = "test"
     name         = "app"
     s3_actions   = ["s3:GetObject"]
     s3_resources = "arn:aws:s3:::examplebucket/*"
@@ -75,3 +75,7 @@ include:
 contributors:
   - name: "Andriy Knysh"
     github: "aknysh"
+  - name: "Erik Osterman"
+    github: "osterman"
+  - name: "Igor Rodionov"
+    github: "goruha"
