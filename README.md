@@ -99,12 +99,13 @@ Available targets:
 
 ```
 <!-- markdownlint-restore -->
+<!-- markdownlint-disable -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.0 |
-| aws | ~> 2.0 |
+| aws | >= 2.0 |
 | local | ~> 1.2 |
 | null | ~> 2.0 |
 
@@ -112,7 +113,7 @@ Available targets:
 
 | Name | Version |
 |------|---------|
-| aws | ~> 2.0 |
+| aws | >= 2.0 |
 
 ## Inputs
 
@@ -141,6 +142,7 @@ Available targets:
 | user\_name | Normalized IAM user name |
 | user\_unique\_id | The user unique ID assigned by AWS |
 
+<!-- markdownlint-restore -->
 
 
 
