@@ -1,9 +1,3 @@
-module "label" {
-  source      = "git::https://github.com/cloudposse/terraform-null-label.git?ref=tags/0.19.2"
-
-  context     = module.this.context
-}
-
 data "aws_iam_policy_document" "default" {
   count = module.this.enabled ? 1 : 0
 
