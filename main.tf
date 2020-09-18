@@ -13,7 +13,7 @@ module "s3_user" {
   force_destroy = var.force_destroy
   path          = var.path
 
-  context     = module.this.context
+  context = module.this.context
 }
 
 resource "aws_iam_user_policy" "default" {
