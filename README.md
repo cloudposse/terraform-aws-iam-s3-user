@@ -1,4 +1,6 @@
+<!-- markdownlint-disable -->
 # terraform-aws-iam-s3-user [![Latest Release](https://img.shields.io/github/release/cloudposse/terraform-aws-iam-s3-user.svg)](https://github.com/cloudposse/terraform-aws-iam-s3-user/releases/latest) [![Slack Community](https://slack.cloudposse.com/badge.svg)](https://slack.cloudposse.com)
+<!-- markdownlint-restore -->
 
 [![README Header][readme_header_img]][readme_header_link]
 
@@ -106,8 +108,8 @@ Available targets:
 |------|---------|
 | terraform | >= 0.12.0 |
 | aws | >= 2.0 |
-| local | ~> 1.2 |
-| null | ~> 2.0 |
+| local | >= 1.2 |
+| null | >= 2.0 |
 
 ## Providers
 
@@ -298,8 +300,10 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
 
 ### Contributors
 
+<!-- markdownlint-disable -->
 |  [![Andriy Knysh][aknysh_avatar]][aknysh_homepage]<br/>[Andriy Knysh][aknysh_homepage] | [![Erik Osterman][osterman_avatar]][osterman_homepage]<br/>[Erik Osterman][osterman_homepage] | [![Igor Rodionov][goruha_avatar]][goruha_homepage]<br/>[Igor Rodionov][goruha_homepage] |
 |---|---|---|
+<!-- markdownlint-restore -->
 
   [aknysh_homepage]: https://github.com/aknysh
   [aknysh_avatar]: https://img.cloudposse.com/150x150/https://github.com/aknysh.png
