@@ -48,7 +48,9 @@ usage: |-
 
   ```hcl
   module "s3_user" {
-    source       = "git::https://github.com/cloudposse/terraform-aws-iam-s3-user.git?ref=master"
+    source = "cloudposse/iam-s3-user/aws"
+    # Cloud Posse recommends pinning every module to a specific version
+    # version     = "x.x.x"
     namespace    = "eg"
     stage        = "test"
     name         = "app"

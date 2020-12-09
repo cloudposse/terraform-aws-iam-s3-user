@@ -9,7 +9,8 @@ data "aws_iam_policy_document" "default" {
 }
 
 module "s3_user" {
-  source        = "git::https://github.com/cloudposse/terraform-aws-iam-system-user.git?ref=tags/0.17.0"
+  source        = "cloudposse/iam-system-user/aws"
+  version       = "0.17.0"
   force_destroy = var.force_destroy
   path          = var.path
 
