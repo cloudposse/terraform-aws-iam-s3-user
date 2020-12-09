@@ -75,7 +75,9 @@ This example will create an IAM user and allow read access to all objects in the
 
 ```hcl
 module "s3_user" {
-  source       = "git::https://github.com/cloudposse/terraform-aws-iam-s3-user.git?ref=master"
+  source = "cloudposse/iam-s3-user/aws"
+  # Cloud Posse recommends pinning every module to a specific version
+  # version     = "x.x.x"
   namespace    = "eg"
   stage        = "test"
   name         = "app"
@@ -106,7 +108,7 @@ Available targets:
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.0 |
+| terraform | >= 0.12.26 |
 | aws | >= 2.0 |
 | local | >= 1.2 |
 | null | >= 2.0 |
