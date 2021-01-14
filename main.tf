@@ -18,6 +18,7 @@ module "s3_user" {
 }
 
 resource "aws_iam_user_policy" "default" {
+  #bridgecrew:skip=BC_AWS_IAM_16:Skipping `Ensure IAM policies are attached only to groups or roles` check because this module intentionally designed to attach policy to a user.
   count  = module.this.enabled ? 1 : 0
   name   = module.s3_user.user_name
   user   = module.s3_user.user_name
