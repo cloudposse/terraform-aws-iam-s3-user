@@ -31,6 +31,9 @@ Terraform module to provision a basic IAM user with permissions to access S3 res
 
 Suitable for CI/CD systems (_e.g._ TravisCI, CircleCI, CodeFresh) or systems which are *external* to AWS that cannot leverage [AWS IAM Instance Profiles](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
 
+By default, IAM users, groups, and roles have no access to AWS resources. IAM policies are the means by which privileges are granted to users, groups, or roles. It is recommended that IAM policies be applied directly to groups and roles but not users.
+**This module intentionally attaches an IAM policy directly to the user and does not use groups**
+
 
 ---
 
@@ -117,8 +120,6 @@ Available targets:
 |------|---------|
 | terraform | >= 0.12.26 |
 | aws | >= 2.0 |
-| local | >= 1.2 |
-| null | >= 2.0 |
 
 ## Providers
 
