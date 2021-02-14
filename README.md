@@ -146,6 +146,20 @@ Available targets:
 |------|---------|
 | aws | >= 2.0 |
 
+## Modules
+
+| Name | Source | Version |
+|------|--------|---------|
+| s3_user | cloudposse/iam-system-user/aws | 0.20.2 |
+| this | cloudposse/label/null | 0.24.1 |
+
+## Resources
+
+| Name |
+|------|
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/2.0/docs/data-sources/iam_policy_document) |
+| [aws_iam_user_policy](https://registry.terraform.io/providers/hashicorp/aws/2.0/docs/resources/iam_user_policy) |
+
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -179,7 +193,6 @@ Available targets:
 | user\_arn | The ARN assigned by AWS for the user |
 | user\_name | Normalized IAM user name |
 | user\_unique\_id | The user unique ID assigned by AWS |
-
 <!-- markdownlint-restore -->
 
 
