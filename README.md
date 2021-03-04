@@ -157,8 +157,8 @@ Available targets:
 
 | Name |
 |------|
-| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/2.0/docs/data-sources/iam_policy_document) |
-| [aws_iam_user_policy](https://registry.terraform.io/providers/hashicorp/aws/2.0/docs/resources/iam_user_policy) |
+| [aws_iam_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) |
+| [aws_iam_user_policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy) |
 
 ## Inputs
 
