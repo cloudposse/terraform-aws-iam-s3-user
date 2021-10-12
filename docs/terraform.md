@@ -16,7 +16,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_s3_user"></a> [s3\_user](#module\_s3\_user) | cloudposse/iam-system-user/aws | 0.20.2 |
+| <a name="module_s3_user"></a> [s3\_user](#module\_s3\_user) | cloudposse/iam-system-user/aws | 0.22.2 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
 
 ## Resources
