@@ -10,7 +10,7 @@ data "aws_iam_policy_document" "default" {
 
 module "s3_user" {
   source        = "cloudposse/iam-system-user/aws"
-  version       = "0.22.2"
+  version       = "0.22.3"
   force_destroy = var.force_destroy
   path          = var.path
 
