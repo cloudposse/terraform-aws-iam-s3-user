@@ -2,6 +2,10 @@ provider "aws" {
   region = var.region
 }
 
+provider "awsutils" {
+  region = var.region
+}
+
 module "s3_user" {
   source        = "../../"
   force_destroy = true
