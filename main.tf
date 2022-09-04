@@ -16,6 +16,7 @@ data "aws_iam_policy_document" "default" {
 module "s3_user" {
   source                        = "cloudposse/iam-system-user/aws"
   version                       = "1.0.0"
+  create_iam_access_key         = var.create_iam_access_key
   force_destroy                 = var.force_destroy
   ssm_ses_smtp_password_enabled = false
   ssm_enabled                   = var.ssm_enabled
