@@ -20,3 +20,20 @@ variable "path" {
   default     = "/"
   description = "Path in which to create the user"
 }
+
+variable "ssm_enabled" {
+  type        = bool
+  description = <<-EOT
+    Set `true` to store secrets in SSM Parameter Store,
+    `false` to store secrets in Terraform state as outputs.
+    Since Terraform state would contain the secrets in plaintext,
+    use of SSM Parameter Store is recommended.
+    EOT
+  default     = false
+}
+
+variable "ssm_base_path" {
+  type        = string
+  description = "The base path for SSM parameters where secrets are stored"
+  default     = "/s3_user/"
+}

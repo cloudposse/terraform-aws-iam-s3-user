@@ -28,12 +28,26 @@
 
 -->
 
-Terraform module to provision a basic IAM user with permissions to access S3 resources, e.g. to give the user read/write/delete access to the objects in an S3 bucket.
+Terraform module to provision a basic IAM user with permissions to access S3 resources, 
+e.g. to give the user read/write/delete access to the objects in an S3 bucket.
 
-Suitable for CI/CD systems (_e.g._ TravisCI, CircleCI, CodeFresh) or systems which are *external* to AWS that cannot leverage [AWS IAM Instance Profiles](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
+Suitable for CI/CD systems (_e.g._ TravisCI, CircleCI) or systems which are *external* to AWS 
+that cannot leverage [AWS IAM Instance Profiles](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html)
+or [AWS OIDC](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html).
 
-By default, IAM users, groups, and roles have no access to AWS resources. IAM policies are the means by which privileges are granted to users, groups, or roles. It is recommended that IAM policies be applied directly to groups and roles but not users.
+By default, IAM users, groups, and roles have no access to AWS resources. 
+IAM policies are the means by which privileges are granted to users, groups, or roles. 
+It is recommended that IAM policies be applied directly to groups and roles but not users.
 **This module intentionally attaches an IAM policy directly to the user and does not use groups**
+
+The IAM user name is constructed using [terraform-null-label](https://github.com/cloudposse/terraform-null-label)
+and some input is required. The simplest input is `name`. By default the name will be converted to lower case
+and all non-alphanumeric characters except for hyphen will be removed. See the documentation for `terraform-null-label`
+to learn how to override these defaults if desired.
+
+If an AWS Access Key is created, it is stored either in SSM Parameter Store or is provided as a module output,
+but not both. Using SSM Parameter Store is recommended because module outputs are stored in plaintext in
+the Terraform state file.
 
 ---
 
@@ -149,7 +163,7 @@ Available targets:
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_s3_user"></a> [s3\_user](#module\_s3\_user) | cloudposse/iam-system-user/aws | 0.23.2 |
+| <a name="module_s3_user"></a> [s3\_user](#module\_s3\_user) | cloudposse/iam-system-user/aws | 1.0.0 |
 | <a name="module_this"></a> [this](#module\_this) | cloudposse/label/null | 0.25.0 |
 
 ## Resources
@@ -182,6 +196,8 @@ Available targets:
 | <a name="input_regex_replace_chars"></a> [regex\_replace\_chars](#input\_regex\_replace\_chars) | Terraform regular expression (regex) string.<br>Characters matching the regex will be removed from the ID elements.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | <a name="input_s3_actions"></a> [s3\_actions](#input\_s3\_actions) | Actions to allow in the policy | `list(string)` | <pre>[<br>  "s3:GetObject"<br>]</pre> | no |
 | <a name="input_s3_resources"></a> [s3\_resources](#input\_s3\_resources) | S3 resources to apply the actions specified in the policy | `list(string)` | n/a | yes |
+| <a name="input_ssm_base_path"></a> [ssm\_base\_path](#input\_ssm\_base\_path) | The base path for SSM parameters where secrets are stored | `string` | `"/s3_user/"` | no |
+| <a name="input_ssm_enabled"></a> [ssm\_enabled](#input\_ssm\_enabled) | Set `true` to store secrets in SSM Parameter Store,<br>`false` to store secrets in Terraform state as outputs.<br>Since Terraform state would contain the secrets in plaintext,<br>use of SSM Parameter Store is recommended. | `bool` | `false` | no |
 | <a name="input_stage"></a> [stage](#input\_stage) | ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release' | `string` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `{'BusinessUnit': 'XYZ'}`).<br>Neither the tag keys nor the tag values will be modified by this module. | `map(string)` | `{}` | no |
 | <a name="input_tenant"></a> [tenant](#input\_tenant) | ID element \_(Rarely used, not included by default)\_. A customer identifier, indicating who this instance of a resource is for | `string` | `null` | no |
@@ -191,7 +207,9 @@ Available targets:
 | Name | Description |
 |------|-------------|
 | <a name="output_access_key_id"></a> [access\_key\_id](#output\_access\_key\_id) | Access Key ID |
+| <a name="output_access_key_id_ssm_path"></a> [access\_key\_id\_ssm\_path](#output\_access\_key\_id\_ssm\_path) | The SSM Path under which the S3 User's access key ID is stored |
 | <a name="output_secret_access_key"></a> [secret\_access\_key](#output\_secret\_access\_key) | Secret Access Key. This will be written to the state file in plain-text |
+| <a name="output_secret_access_key_ssm_path"></a> [secret\_access\_key\_ssm\_path](#output\_secret\_access\_key\_ssm\_path) | The SSM Path under which the S3 User's secret access key is stored |
 | <a name="output_user_arn"></a> [user\_arn](#output\_user\_arn) | The ARN assigned by AWS for the user |
 | <a name="output_user_name"></a> [user\_name](#output\_user\_name) | Normalized IAM user name |
 | <a name="output_user_unique_id"></a> [user\_unique\_id](#output\_user\_unique\_id) | The user unique ID assigned by AWS |
@@ -359,7 +377,7 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
 
 [![README Footer][readme_footer_img]][readme_footer_link]
 [![Beacon][beacon]][website]
-
+<!-- markdownlint-disable -->
   [logo]: https://cloudposse.com/logo-300x69.svg
   [docs]: https://cpco.io/docs?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-iam-s3-user&utm_content=docs
   [website]: https://cpco.io/homepage?utm_source=github&utm_medium=readme&utm_campaign=cloudposse/terraform-aws-iam-s3-user&utm_content=website
@@ -390,3 +408,4 @@ Check out [our other projects][github], [follow us on twitter][twitter], [apply 
   [share_googleplus]: https://plus.google.com/share?url=https://github.com/cloudposse/terraform-aws-iam-s3-user
   [share_email]: mailto:?subject=terraform-aws-iam-s3-user&body=https://github.com/cloudposse/terraform-aws-iam-s3-user
   [beacon]: https://ga-beacon.cloudposse.com/UA-76589703-4/cloudposse/terraform-aws-iam-s3-user?pixel&cs=github&cm=readme&an=terraform-aws-iam-s3-user
+<!-- markdownlint-restore -->
