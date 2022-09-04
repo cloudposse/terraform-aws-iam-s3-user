@@ -20,3 +20,32 @@ variable "path" {
   default     = "/"
   description = "Path in which to create the user"
 }
+
+variable "create_iam_access_key" {
+  type        = bool
+  description = <<-EOT
+    Set `true` to create an IAM Access Key for the user.
+    To rotate the key, set `false` to delete it and then back to `true` to create a new key.
+    Best practice is to never create a key and instead authenticate with OIDC or some other mechanism
+    that does not require long-lived bearer tokens.
+    EOT
+  default     = true
+}
+
+
+variable "ssm_enabled" {
+  type        = bool
+  description = <<-EOT
+    Set `true` to store secrets in SSM Parameter Store,
+    `false` to store secrets in Terraform state as outputs.
+    Since Terraform state would contain the secrets in plaintext,
+    use of SSM Parameter Store is recommended.
+    EOT
+  default     = false
+}
+
+variable "ssm_base_path" {
+  type        = string
+  description = "The base path for SSM parameters where secrets are stored"
+  default     = "/s3_user/"
+}
