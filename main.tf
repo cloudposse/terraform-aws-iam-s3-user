@@ -43,5 +43,5 @@ resource "aws_iam_user_policy" "default" {
   count  = local.enabled ? 1 : 0
   name   = module.s3_user.user_name
   user   = module.s3_user.user_name
-  policy = join("", data.aws_iam_policy_document.default.*.json, aws_iam_policy_document.kms.json)
+  policy = join("", data.aws_iam_policy_document.default.*.json, data.aws_iam_policy_document.kms.*.json)
 }
