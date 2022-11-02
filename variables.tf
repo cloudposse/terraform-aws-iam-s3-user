@@ -9,6 +9,18 @@ variable "s3_resources" {
   description = "S3 resources to apply the actions specified in the policy"
 }
 
+variable "s3_bucket_key_enabled" {
+  type        = bool
+  default     = false
+  description = "If S3 bucket is encrypted"
+}
+
+variable "s3_bucket_kms_master_key_arn" {
+  type        = string
+  default     = "Parameter Store KMS master key"
+  description = "KMS key ID used to encrypt S3 bucket."
+}
+
 variable "force_destroy" {
   type        = bool
   default     = false

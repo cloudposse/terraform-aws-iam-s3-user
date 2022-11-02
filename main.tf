@@ -13,6 +13,18 @@ data "aws_iam_policy_document" "default" {
   }
 }
 
+data "aws_iam_policy_document" "kms" {
+  count = local.s3_bucket_key_enabled ? 1 : 0
+  statement {
+    actions = [
+      "kms:Decrypt",
+      "kms:GenerateDataKey",
+    ]
+    resources = var.s3_bucket_kms_master_key_arn
+    effect    = "Allow"
+  }
+}
+
 module "s3_user" {
   source                        = "cloudposse/iam-system-user/aws"
   version                       = "1.0.0"
@@ -31,5 +43,5 @@ resource "aws_iam_user_policy" "default" {
   count  = local.enabled ? 1 : 0
   name   = module.s3_user.user_name
   user   = module.s3_user.user_name
-  policy = join("", data.aws_iam_policy_document.default.*.json)
+  policy = join("", data.aws_iam_policy_document.default.*.json, aws_iam_policy_document.kms.json)
 }
