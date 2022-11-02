@@ -25,6 +25,7 @@
 |------|------|
 | [aws_iam_user_policy.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_user_policy) | resource |
 | [aws_iam_policy_document.default](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [aws_iam_policy_document.kms](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 
 ## Inputs
 
@@ -49,6 +50,8 @@
 | <a name="input_path"></a> [path](#input\_path) | Path in which to create the user | `string` | `"/"` | no |
 | <a name="input_regex_replace_chars"></a> [regex\_replace\_chars](#input\_regex\_replace\_chars) | Terraform regular expression (regex) string.<br>Characters matching the regex will be removed from the ID elements.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | `null` | no |
 | <a name="input_s3_actions"></a> [s3\_actions](#input\_s3\_actions) | Actions to allow in the policy | `list(string)` | <pre>[<br>  "s3:GetObject"<br>]</pre> | no |
+| <a name="input_s3_bucket_key_enabled"></a> [s3\_bucket\_key\_enabled](#input\_s3\_bucket\_key\_enabled) | If S3 bucket is encrypted | `bool` | `false` | no |
+| <a name="input_s3_bucket_kms_master_key_arn"></a> [s3\_bucket\_kms\_master\_key\_arn](#input\_s3\_bucket\_kms\_master\_key\_arn) | KMS key ID used to encrypt S3 bucket. | `string` | `"Parameter Store KMS master key"` | no |
 | <a name="input_s3_resources"></a> [s3\_resources](#input\_s3\_resources) | S3 resources to apply the actions specified in the policy | `list(string)` | n/a | yes |
 | <a name="input_ssm_base_path"></a> [ssm\_base\_path](#input\_ssm\_base\_path) | The base path for SSM parameters where secrets are stored | `string` | `"/s3_user/"` | no |
 | <a name="input_ssm_enabled"></a> [ssm\_enabled](#input\_ssm\_enabled) | Set `true` to store secrets in SSM Parameter Store,<br>`false` to store secrets in Terraform state as outputs.<br>Since Terraform state would contain the secrets in plaintext,<br>use of SSM Parameter Store is recommended. | `bool` | `false` | no |
