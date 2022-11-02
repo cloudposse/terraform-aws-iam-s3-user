@@ -1,5 +1,5 @@
 locals {
-  enabled = module.this.enabled
+  enabled               = module.this.enabled
   s3_bucket_key_enabled = local.enabled && var.s3_bucket_key_enabled
 }
 
