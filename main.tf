@@ -21,7 +21,7 @@ data "aws_iam_policy_document" "kms" {
       "kms:Decrypt",
       "kms:GenerateDataKey",
     ]
-    resources = var.s3_bucket_kms_master_key_arn
+    resources = ["${var.s3_bucket_kms_master_key_arn}"]
     effect    = "Allow"
   }
 }
