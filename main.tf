@@ -3,8 +3,7 @@ locals {
   s3_bucket_key_enabled = local.enabled && var.s3_bucket_key_enabled
 }
 
-
-data "aws_iam_policy_document" "default" {
+data "aws_iam_policy_document" "s3" {
   count = local.enabled ? 1 : 0
 
   statement {
@@ -24,6 +23,15 @@ data "aws_iam_policy_document" "kms" {
     resources = ["${var.s3_bucket_kms_master_key_arn}"]
     effect    = "Allow"
   }
+}
+
+data "aws_iam_policy_document" "default" {
+  count = local.enabled ? 1 : 0
+
+  source_policy_documents = concat(
+                 [join("", data.aws_iam_policy_document.s3.*.json)],
+                 [join("", data.aws_iam_policy_document.kms.*.json)]
+                )
 }
 
 module "s3_user" {
