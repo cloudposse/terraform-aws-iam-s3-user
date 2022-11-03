@@ -29,9 +29,9 @@ data "aws_iam_policy_document" "default" {
   count = local.enabled ? 1 : 0
 
   source_policy_documents = concat(
-                 [join("", data.aws_iam_policy_document.s3.*.json)],
-                 [join("", data.aws_iam_policy_document.kms.*.json)]
-                )
+    [join("", data.aws_iam_policy_document.s3.*.json)],
+    [join("", data.aws_iam_policy_document.kms.*.json)]
+  )
 }
 
 module "s3_user" {
