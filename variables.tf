@@ -49,3 +49,9 @@ variable "ssm_base_path" {
   description = "The base path for SSM parameters where secrets are stored"
   default     = "/s3_user/"
 }
+
+variable "permissions_boundary" {
+  type        = string
+  description = "Permissions Boundary ARN to attach to our created user"
+  default     = null
+}
