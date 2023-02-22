@@ -43,6 +43,7 @@ module "s3_user" {
   ssm_enabled                   = var.ssm_enabled
   ssm_base_path                 = var.ssm_base_path
   path                          = var.path
+  permissions_boundary          = var.permissions_boundary
 
   context = module.this.context
 }
