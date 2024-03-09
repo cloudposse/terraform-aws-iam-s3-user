@@ -14,12 +14,17 @@ license: "APACHE2"
 github_repo: cloudposse/terraform-aws-iam-s3-user
 # Badges to display
 badges:
-  - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse/terraform-aws-iam-s3-user.svg"
-    url: "https://github.com/cloudposse/terraform-aws-iam-s3-user/releases/latest"
-  - name: "Slack Community"
-    image: "https://slack.cloudposse.com/badge.svg"
-    url: "https://slack.cloudposse.com"
+  - name: Latest Release
+    image: https://img.shields.io/github/release/cloudposse/terraform-aws-iam-s3-user.svg?style=for-the-badge
+    url: https://github.com/cloudposse/terraform-aws-iam-s3-user/releases/latest
+  - name: Last Updated
+    image: https://img.shields.io/github/last-commit/cloudposse/terraform-aws-iam-s3-user.svg?style=for-the-badge
+    url: https://github.com/cloudposse/terraform-aws-iam-s3-user/commits
+  - name: Slack Community
+    image: https://slack.cloudposse.com/for-the-badge.svg
+    url: https://slack.cloudposse.com
+
+# List any related terraform modules that this module may be used with or that this module depends on.
 related:
   - name: "terraform-aws-iam-system-user"
     description: "Terraform Module to Provision a Basic IAM System User Suitable for CI/CD Systems (E.g. TravisCI, CircleCI)"
@@ -49,7 +54,7 @@ description: |-
   IAM policies are the means by which privileges are granted to users, groups, or roles. 
   It is recommended that IAM policies be applied directly to groups and roles but not users.
   **This module intentionally attaches an IAM policy directly to the user and does not use groups**
-  
+
   The IAM user name is constructed using [terraform-null-label](https://github.com/cloudposse/terraform-null-label)
   and some input is required. The simplest input is `name`. By default the name will be converted to lower case
   and all non-alphanumeric characters except for hyphen will be removed. See the documentation for `terraform-null-label`
@@ -81,10 +86,4 @@ include:
   - "docs/targets.md"
   - "docs/terraform.md"
 # Contributors to this project
-contributors:
-  - name: "Andriy Knysh"
-    github: "aknysh"
-  - name: "Erik Osterman"
-    github: "osterman"
-  - name: "Igor Rodionov"
-    github: "goruha"
+contributors: []
