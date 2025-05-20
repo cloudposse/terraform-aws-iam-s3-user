@@ -4,13 +4,31 @@ locals {
 
 
 data "aws_iam_policy_document" "default" {
-  count = local.enabled ? 1 : 0
+  count = !var.enable_ip_filter && local.enabled ? 1 : 0
 
   statement {
     actions   = var.s3_actions
     resources = var.s3_resources
     effect    = "Allow"
   }
+}
+
+data "aws_iam_policy_document" "ip_filtered" {
+  count = var.enable_ip_filter && local.enabled ? 1 : 0
+
+
+  statement {
+    actions   = var.s3_actions
+    resources = var.s3_resources
+    effect    = "Allow"
+
+    condition {
+      test     = "IpAddress"
+      variable = "aws:SourceIp"
+      values   = var.ip_filtered_list
+    }
+  }
+
 }
 
 module "s3_user" {
@@ -29,8 +47,11 @@ module "s3_user" {
 
 resource "aws_iam_user_policy" "default" {
   #bridgecrew:skip=BC_AWS_IAM_16:Skipping `Ensure IAM policies are attached only to groups or roles` check because this module intentionally attaches IAM policy directly to a user.
-  count  = local.enabled ? 1 : 0
-  name   = module.s3_user.user_name
-  user   = module.s3_user.user_name
-  policy = join("", data.aws_iam_policy_document.default.*.json)
+  count = local.enabled ? 1 : 0
+  name  = module.s3_user.user_name
+  user  = module.s3_user.user_name
+  policy = join("", concat(
+    data.aws_iam_policy_document.ip_filtered.*.json,
+    data.aws_iam_policy_document.default.*.json
+  ))
 }

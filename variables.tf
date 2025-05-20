@@ -55,3 +55,16 @@ variable "permissions_boundary" {
   description = "Permissions Boundary ARN to attach to our created user"
   default     = null
 }
+
+
+variable "enable_ip_filter" {
+  type        = bool
+  description = "If permissions policy is filtered by IP"
+  default     = false
+}
+
+variable "ip_filtered_list" {
+  type        = list(any)
+  description = "List of IPs to filter by in permissions policy"
+  default     = []
+}
